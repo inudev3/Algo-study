@@ -48,9 +48,4 @@ else:
 
 
 
-res = min(res, sToA + AToB + BToN)
-res = min(res, sToB + AToB + AToN)
-if res == INF or AToB == INF:
-    print(-1)
-else:
-    print(res)
+

@@ -1,7 +1,6 @@
-# 10972 다음 순열
-N = int(input())
-A = list(map(int, input().split()))
 
+N = int(input())
+A =  [0] * N
 
 def next_permutation(N, A):
     ans = []
@@ -21,8 +20,10 @@ def next_permutation(N, A):
         j-=1
     return True
 
-
-if next_permutation(N, A) is True:
-    print(' '.join(map(str, A)))
-else:
-    print(-1)
+for i in range(N):
+    A[i] = i+1
+for j in range(N):
+    print(A[j])
+while next_permutation(N, A):
+    for j in range(N):
+        print(A[j])
