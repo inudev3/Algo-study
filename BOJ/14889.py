@@ -31,3 +31,24 @@ def go(index, first, second): #각 사람이 어떤 팀에 들어갈 것인지 �
         ans = t2
     return ans
 ##브루트포스에서 경우의수를 만들어 불가능한 경우를 제외하는 것이 백트래킹
+
+#비트마스크
+ans = -1
+for i in range(1<<N):
+    for j in range(N):
+        if i&(1<<j): #번호 j가 첫번째 팀에 포함되는 경우의 수
+            first.append(j)
+        else:
+            second.append(j)
+    if len(first) != N//2:
+        continue
+    t1 = 0
+    t2=0
+    for l1 in range(N//2):
+        for l2 in range(N//2):
+            t1 += S[first[l1]][first[l2]]
+            t2 += S[second[l1]][second[l2]]
+    diff = abs(t1-t2)
+    if ans==-1 or ans>diff:
+        ans = diff
+print(ans)
