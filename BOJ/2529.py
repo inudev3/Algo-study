@@ -22,7 +22,58 @@ def go(index, num):
             go(index+1, num+str(i))
             check[i] = False
 
-go(0, '')
-ans.sort()
-print(ans[::-1])
-print(ans)
+k = int(input())
+eq = input().split()
+small = [0] * (k+1)
+big = [0] * (k+1)
+for i in range(k+1):
+    small[i] = i
+    big[i] = 9-i
+
+
+def next_permutation(N, A):
+    ans = []
+    i = N - 1
+    while i > 0 and A[i] <= A[i - 1]:  # 내림차순인지 검사한다.
+        i -= 1
+    if i <= 0:
+        return False
+    j = N - 1
+    while A[j] <= A[i - 1]:  # 뒷 숫자들은 이미 내림차순이므로 i-1보다 큰 첫번째 수가 최소값
+        j -= 1
+    A[i - 1], A[j] = A[j], A[i - 1]
+    j = N-1
+    while i<j:
+        A[i], A[j] = A[j], A[i]
+        i+=1
+        j-=1
+    return True
+
+def prev_permutation(N, a):
+    ans  =[]
+    i = N-1
+    while i>0 and A[i]>=A[i-1]: #오름차순인지 검사
+        i -=1
+    if i<=0:
+        return False
+    j = N-1
+    while A[i]>= A[i-1]:
+        j-=1
+    A[i-1], A[j] = A[j] = A[i-1]
+    j = N - 1  # 초기화
+    while i < j:
+        A[i], A[j] = A[j], A[i]
+        i += 1
+        j -= 1
+    return True
+def check(perm, a):
+    for i in range(len(a)):
+        if a[i] == '<' and perm[i] > perm[i+1]:
+            return False
+        if a[i] == '>' and perm[i] <perm[i+1]:
+            return False
+    return True
+while True:
+    if check(small, eq):
+        break
+    if
