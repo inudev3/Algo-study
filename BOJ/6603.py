@@ -12,15 +12,14 @@ while True:
         break
     go(a, 0, [])
 
-
 def go(a, index, lotto):
-    if len(lotto)==6:
+    if index==len(a):
+        return
+    if len(lotto) == 6:
         print(' '.join(map(str, lotto)))
         return
-    if index == len(a):
-        return
-    lotto.append(a[index])
+    go(a, index+1, lotto+a[index])
     go(a, index+1, lotto)
-    lotto.pop()
-    go(a, index+1, lotto)
+
+
 
