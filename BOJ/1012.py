@@ -4,6 +4,7 @@ from sys import stdin
 T = int(input())
 dx = [1, -1, 0, 0]
 dy = [0, 0, 1, -1]
+
 while T:
     M, N, K = map(int, stdin.readline().split())
     farm = [[0] * 51 for _ in range(51)]
