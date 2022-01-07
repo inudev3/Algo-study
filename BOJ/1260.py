@@ -11,6 +11,7 @@ for _ in range(M):
     graph[v].append(u)
     graph[u].sort()
     graph[v].sort()
+
 def dfs(start):
     checked[start] = True
     print(start+1, end=" ")
