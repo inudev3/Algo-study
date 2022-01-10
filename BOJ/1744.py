@@ -12,6 +12,33 @@ zero = 0
 one = 0
 
 for i in range(n):
+    if s[i]==1:
+        one+=1
+    elif s[i]>0:
+        plus.append(s[i])
+    elif s[i]<0:
+        minus.append(s[i])
+    else:
+        zero+=1
+plus.sort(reverse=True)
+minus.sort()
+if len(plus)%2:
+    plus.append(1) #편의상 (묶는거 아님)
+if len(minus)%2:
+    minus.append(0 if zero > 0 else 1 ) # 0은 묶어도 답에 영향가지 않으므로
+
+ans = one
+for i in range(0,len(plus), 2):
+    ans += plus[i]*plus[i+1]
+for i in range(0, len(minus), 2):
+    ans+= minus[i]* minus[i+1]
+
+print(ans)
+
+
+
+
+for i in range(n):
     if s[i] == 1:
         one+=1
     elif s[i]>0:

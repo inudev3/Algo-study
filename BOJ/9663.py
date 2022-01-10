@@ -1,37 +1,44 @@
-N = int(input())
 
-a = [[False]* N for _ in range(N)]
-dx = [1,-1,-1,1]
-dy = [-1,1,1,-1]
-check_col = [False] * N
-check_dig = [False] * (2*N-1)
-check_dig2 = [False] * (2*N-1)
-def check(row,col):
-    if check_col[col]: #열 중복 체크
-        return False
-    if check_dig[row+col]: #대각선 방향
-        return False
-    if check_dig2[row-col+N-1]:
-        return False
+
+def check(row, col):
+    for i in range(n):
+        if i == row:
+            continue
+        if a[i][col]:
+            return False
+    x = row - 1
+    y = row - 1
+    while x >= 0 and y >= 0:  ##한방향으로만 진행
+        if a[x][y]:
+            return False
+        x -= 1
+        y -= 1
+    x = row - 1
+    y = col + 1
+    while x >= 0 and y < n:
+        if a[x][y]:
+            return False
+        x -= 1
+        y += 1
     return True
 
-#행 row에 퀸의 위치를 어디에 놓을건지 계산하는 함수:
+
+# 행 row에 퀸의 위치를 어디에 놓을건지 계산하는 함수:
 
 def calc(row):
-    if row==N: ##끝에 도달하면 방법의 수 1개 추가
-        return 1
-    ans = 0
-    for col in range(N): ##행에 퀸을 놓을 수 있는 모든 경우의 수 조사
-        if check[row][col]:
-            check_col[col] = True
-            check_dig[row+col] = True
-            check_dig2[row-col+N-1] = True
-            a[row][col] = True
-            ans+=calc(row+1)
-            check_col[col] = False
-            check_dig[row + col] = False
-            check_dig2[row - col + N - 1] = False
-            a[row][col] = False
-    return ans
+    if row == n:  ##끝에 도달하면 방법의 수 1개 추가
+        global ans
+        ans += 1
+        return
+    for col in range(n):  ##행에 퀸을 놓을 수 있는 모든 경우의 수 조사
+        a[row][col] = True
+        if check(row, col):
+            calc(row + 1)
+        a[row][col] = False
 
+n = int(input())
+a = [[False] * n for _ in range(n)]
 
+ans = 0
+calc(0)
+print(ans)

@@ -1,19 +1,25 @@
+import sys
 from collections import namedtuple
-from sys import stdin
-#빨리 끝나는 것부터 배정한다.
-input = stdin.readline
-Meeting = namedtuple('Meeting', ['begin', 'end'])
 
+input = sys.stdin.readline
 n = int(input())
+Meeting = namedtuple('Meeting', ['begin', 'end']);
 a = [Meeting(*map(int, input().split())) for _ in range(n)]
-a.sort(key=lambda x: (x.end, x.begin)) #end로 정렬하고 같을 경울
-now = 0 #회의가 끝난 시간
-ans = 0
-for p in a:
-    if now<= p.begin:
-        now = p.end
-        ans+=1
-print(ans)
+
+a.sort(key=lambda x: (x.end, x.begin))
+
+cnt = 1
+last = a[0]
+for i in range(1, n):
+    if a[i].begin >= last.end:
+        cnt += 1
+        last = a[i]
+print(cnt)
+
+
+
+
+
 
 
 

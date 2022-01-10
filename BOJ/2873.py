@@ -1,3 +1,7 @@
+import sys
+
+input = sys.stdin.readline
+print= sys.stdout.write
 n, m = map(int, input().split())
 
 a = [list(map(int, input().split())) for _ in range(n)]
@@ -34,13 +38,13 @@ else: #둘다 짝수면
     y2=m-1
     s2=""
     while x2-x1>1: #차이가 2칸 이상이면
-        if x1/2 <x/2: #두 칸씩 전진하므로 2개씩 묶어서 나눠주면 됨 ->현재 칸에 이동불가 칸이 없으면 2칸 이동
+        if x1//2 <x//2: #두 칸씩 전진하므로 2개씩 묶어서 나눠주면 됨 ->현재 칸에 이동불가 칸이 없으면 2칸 이동
             s+= 'R'*(m-1)
             s+= "D"
             s+="L"*(m-1)
             s+= "D"
             x1+=2 #행 2칸 증가
-        if x/2 <x2/2: #B의 경우 현재칸의 2칸 범위에 이동불가 칸이 없으면 2칸 이동
+        if x//2 <x2//2: #B의 경우 현재칸의 2칸 범위에 이동불가 칸이 없으면 2칸 이동
             s2+="R"*(m-1) #B는 역순으로
             s2+= "D"
             s2+= "L"*(m-1)

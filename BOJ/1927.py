@@ -3,9 +3,9 @@ from sys import stdin
 
 N= int(input())
 
+arr = []
 for i in range(N):
-    eq = int(stdin.readline())
-    arr = []
+    eq = int(stdin.readline().rstrip())
     if eq == 0:
         if not arr:
             print(0)
