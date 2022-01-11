@@ -3,7 +3,7 @@ from collections import namedtuple
 
 input = sys.stdin.readline
 n = int(input())
-Meeting = namedtuple('Meeting', ['begin', 'end']);
+Meeting = namedtuple('Meeting', ['begin', 'end'])
 a = [Meeting(*map(int, input().split())) for _ in range(n)]
 
 a.sort(key=lambda x: (x.end, x.begin))
