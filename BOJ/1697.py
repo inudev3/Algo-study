@@ -16,6 +16,7 @@ while q:
     for nxt in [now - 1, now + 1, now * 2]:
         if 0 <= nxt < limit and not check[nxt]:
             trace[nxt] = now
+            trace
             q.append(nxt)
             check[nxt] = True
             dist[nxt] = dist[now] + 1

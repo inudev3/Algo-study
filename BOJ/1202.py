@@ -18,9 +18,9 @@ ans = 0
 for p in a:
     if p.w==0: #보석이면
         heappush(q, -p.v) #가격이 큰 순서대로 푸쉬
-    else:
+    else: ##가방이면
         if q:
-            ans+= -heappop(q)# 가장 가격이 높은 보석을 pop(가방은 보석 1개씩)
+            ans-= heappop(q)# 가장 가격이 높은 보석을 pop(가방은 보석 1개씩)
 print(ans)
 
 # jewel = [map(int, input().split()) for _ in range(n)]
