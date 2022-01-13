@@ -63,3 +63,7 @@ def go(index, selected, n, m):
     for i in range(m-selected, 0, -1):
         cnt[index] = i ## 횟수가 몇번 반복되는지 기록
         go(index+1, selected+i, n, m)
+
+#다이나믹_: 점화식을 정의한다.
+# 문제를 작게 만들수 있는 방법이 주어졌다면 이용하고, 없다면 찾는다.
+

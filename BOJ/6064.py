@@ -16,5 +16,11 @@ for i in range(x, N*M, M):
 if not ok:
     print(-1)
 
+m,n, x, y= map(int, input().split())
+x-=1
+y-=1
+for i in range(x, n*m, m):
+    if i%n
 
 
+def go(index, )
