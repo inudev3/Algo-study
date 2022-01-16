@@ -7,7 +7,7 @@ def check(row, col):
         if a[i][col]:
             return False
     x = row - 1
-    y = row - 1
+    y = col - 1
     while x >= 0 and y >= 0:  ##한방향으로만 진행
         if a[x][y]:
             return False
