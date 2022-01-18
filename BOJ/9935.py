@@ -2,15 +2,17 @@ string = input().rstrip()
 exp = input().rstrip()
 
 
+n = len(string)
+m= len(exp)
 
-lastChar = exp[-1]
+last = exp[-1]
 stack = []
-length = len(exp)
-
 for char in string:
     stack.append(char)
-    if char==lastChar and ''.join(stack[-length:]) == exp:
-        for _ in range(len(exp)):
-            stack.pop()
+    if char == last and "".join(stack[-m:])==exp:
+        del stack[-m:]
 
-answer = ''.join(stack)
+if not stack:
+    print('FRULA')
+else:
+    print(''.join(stack))
