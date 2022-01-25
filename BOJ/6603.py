@@ -6,11 +6,7 @@
 # k! / 6! *(k-6)! (순서 상관 없음)
 from sys import stdin
 
-while True:
-    n, *a = list(map(int, stdin.readline().split()))
-    if n==0:
-        break
-    go(a, 0, [])
+
 
 def go(a, index, lotto):
     if index==len(a):
@@ -18,8 +14,17 @@ def go(a, index, lotto):
     if len(lotto) == 6:
         print(' '.join(map(str, lotto)))
         return
-    go(a, index+1, lotto+a[index])
+    go(a, index+1, lotto+a[index]) ##선택하는 경우를 먼저 호출하면 오름차순으로 출력할 수 있다.
     go(a, index+1, lotto)
+
+while True:
+    n, *a = list(map(int, stdin.readline().split()))
+    if n==0:
+        break
+    go(a, 0, [])
+
+
+lotto =[]
 
 
 

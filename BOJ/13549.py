@@ -15,36 +15,36 @@ limit = 200000
 dist = [-1] * limit
 check = [False] * limit
 q = collections.deque()
-q.append(N)
-dist[N] = 0
-while q:
-    now = q.popleft()
-    if now * 2 < limit and check[now * 2] is False:
-        q.appendleft(now*2)
-        check[now*2] = True
-        dist[now * 2] = dist[now]
-    for nxt in [now - 1, now + 1]:
-        if 0 <= nxt < limit and check[nxt] is False:
-            q.append(nxt)
-            check[nxt] = True
-            dist[nxt] = dist[now] + 1
-print(dist[K])
-
-##다음 큐로 옮기는 방법
-# next_queue =collections.deque()
-#
+# q.append(N)
+# dist[N] = 0
 # while q:
 #     now = q.popleft()
-#     if now*2<limit and check[now*2] is False:
-#         q.append(now*2)
-#         dist[now*2] = dist[now]
+#     if now * 2 < limit and check[now * 2] is False:
+#         q.appendleft(now*2)
 #         check[now*2] = True
-#     for nxt in [now+1, now-1]:
-#         if 0<=nxt<limit and check[nxt] is False:
-#             next_queue.append(nxt)
-#             dist[nxt] = dist[now] +1
+#         dist[now * 2] = dist[now]
+#     for nxt in [now - 1, now + 1]:
+#         if 0 <= nxt < limit and check[nxt] is False:
+#             q.append(nxt)
 #             check[nxt] = True
-#     if not q:
-#         q = next_queue
-#         next_queue = collections.deque()
+#             dist[nxt] = dist[now] + 1
 # print(dist[K])
+
+#다음 큐로 옮기는 방법
+next_queue =collections.deque()
+
+while q:
+    now = q.popleft()
+    if now*2<limit and check[now*2] is False:
+        q.append(now*2)
+        dist[now*2] = dist[now]
+        check[now*2] = True
+    for nxt in [now+1, now-1]:
+        if 0<=nxt<limit and check[nxt] is False:
+            next_queue.append(nxt)
+            dist[nxt] = dist[now] +1
+            check[nxt] = True
+    if not q:
+        q = next_queue
+        next_queue = collections.deque()
+print(dist[K])

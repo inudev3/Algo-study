@@ -6,7 +6,7 @@ v = int(input())
 graph = [[] for _ in range(v+1)]
 for i in range(v):
     line = list(map(int, input().split()))
-    for i in range(1,len(line)-1, 2):
+    for i in range(len(line)-1//2-1):
         graph[line[0]].append((line[i], line[i+1]))
 
 def bfs(start):
@@ -28,6 +28,8 @@ def bfs(start):
 
 dist, first= bfs(1)
 secondist, second= bfs(first)
+
+
 
 print(secondist)
 

@@ -9,6 +9,7 @@ dist = [[-1] * (m+1) for _ in range(n+1)]
 def bfs(a,b):
     q = collections.deque()
     dist[a][b] = 0
+
     broke = False
     q.append((a, b, broke))
     while q:
@@ -25,5 +26,25 @@ def bfs(a,b):
                 else:
                     dist[nx][ny] = dist[x][y] + 1
                     q.append((nx, ny, broke))
-bfs(1,1)
-print(-1 if dist[n][m]==-1 else dist[n][m])
+# bfs(1,1)
+# print(-1 if dist[n][m]==-1 else dist[n][m])
+def solution(board, moves):
+    stack = []
+    ans = 0
+    for move in moves:
+        for row in board:
+            if row[move - 1] == 0:
+                continue
+            elif row[move - 1] == stack[-1]:
+                row[move - 1] = 0
+                stack.pop()
+                ans += 1
+            else:
+                stack.append(row[move - 1])
+                row[move - 1] = 0
+
+    return ans
+
+board = [[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]]
+moves =[1,5,3,5,1,2,1,4]
+print(solution(board, moves))

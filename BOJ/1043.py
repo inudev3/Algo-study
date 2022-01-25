@@ -1,7 +1,7 @@
 
 
 parent = [0]*51
-
+party = [0]*51
 def find(x):
     if parent[x] ==x:
         return

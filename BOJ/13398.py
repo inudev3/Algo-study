@@ -1,7 +1,7 @@
 n = int(input())
 a = list(map(int, input().split()))
 D = [0]*(n+1) # 끝나는 최대 연속합
-D2 = [0]*(n+1) #시작하 최대연속합
+D2 = [0]*(n+1) #시작하는 최대연속합
 for i in range(n):
     D[i] = a[i]
     D[i] = max(D[i-1]+a[i],a[i])
