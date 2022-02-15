@@ -33,3 +33,30 @@ def go(sum):
     for k in range(1, 4):
         ans+=go(sum + k )
     return ans
+
+
+##1,2,3더하기
+n = int(input())
+m = 3
+nums = [1,2,3]
+D = [0]*(n+1)
+D[0] = 1
+for i in range(1, n+1):
+    for j in range(m):
+        if i-nums[j]>=0:
+            D[i]+= D[i-nums[j]]
+print(D[n])
+
+##1,2,3 더하기 4
+n = int(input())
+m = 3
+nums = [1,2,3]
+D = [0]*(n+1)
+D[0] = 1
+
+for j in range(m):
+    for i in range(1, n + 1):
+        if i-nums[j]>=0:
+            D[i]+= D[i-nums[j]]
+print(D[n])
+#기준을 바꾼다...?

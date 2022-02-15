@@ -65,7 +65,7 @@ plus, minus, mul, div = map(int, input().split())
 
 def go(a, index, cur, plus, minus, mul, div):
     if index == len(a):
-        return (cur, cur)  # 최대값, 최소값 을
+        return (cur,cur)  # 최대값, 최소값 을
     res = []
     if plus > 0:
         res.append(go(a, index + 1, cur + a[index], plus - 1, minus, mul, div))
@@ -77,10 +77,10 @@ def go(a, index, cur, plus, minus, mul, div):
         if cur >= 0:
             res.append(go(a, index + 1, cur // a[index], plus, minus, mul, div - 1))
         else:
-            res.append(go(a, index + 1, (-cur // a[index]), plus, minus, mul, div - 1))
+            res.append(go(a, index + 1, -(-cur // a[index]), plus, minus, mul, div - 1))
 
-    x = max([s[0] for s in res])
-    y = min([s[1] for s in res])
+    x = max(s[0] for s in res)
+    y = min(s[1] for s in res)
     return (x, y)
 
 

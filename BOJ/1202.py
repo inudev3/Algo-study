@@ -61,3 +61,15 @@ for _ in range(k):
         break
 print(ans)
 
+
+n,s,m = map(int, input().split())
+v = [s]+list(map(int, input().split()))
+D  = [0 for _ in range(n)]
+
+if D[i-1]+v[i]>m:
+    D[i] = D[i-1]-v[i]
+elif D[i-1]-v[i]<0:
+    D[i] = D[i - 1] + v[i]
+else:
+    D[i] = max(D[i-1]+v[i], D[i-1]-v[i])
+
