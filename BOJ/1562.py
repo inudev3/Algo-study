@@ -1,5 +1,5 @@
 n = int(input())
-dp = [[0 for _ in range(1024)] for _ in range(10)] * n
+dp = [[0 for _ in range(1024)] for _ in range(10)] * (n+1)
 MOD = 1e9
 for i in range(10):
     dp[1][i][1 << i] = 1
