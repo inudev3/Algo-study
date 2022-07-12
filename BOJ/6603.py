@@ -7,24 +7,39 @@
 from sys import stdin
 
 
-
-def go(a, index, lotto):
-    if index==len(a):
-        return
-    if len(lotto) == 6:
-        print(' '.join(map(str, lotto)))
-        return
-    go(a, index+1, lotto+a[index]) ##선택하는 경우를 먼저 호출하면 오름차순으로 출력할 수 있다.
-    go(a, index+1, lotto)
-
-while True:
-    n, *a = list(map(int, stdin.readline().split()))
-    if n==0:
-        break
-    go(a, 0, [])
+#
+# def go(a, index, lotto):
+#     if index==len(a):
+#         return
+#     if len(lotto) == 6:
+#         print(' '.join(map(str, lotto)))
+#         return
+#     go(a, index+1, lotto+a[index]) ##선택하는 경우를 먼저 호출하면 오름차순으로 출력할 수 있다.
+#     go(a, index+1, lotto)
+#
+# while True:
+#     n, *a = list(map(int, stdin.readline().split()))
+#     if n==0:
+#         break
+#     go(a, 0, [])
 
 
 lotto =[]
+def go(a,index, cnt):
+    if cnt==6:
+        print(" ".join(map(str, lotto)))
+    if index==k:
+        return
+    lotto.append(a[index])
+    go(a, index+1, cnt+1)
+    lotto.pop()
+    go(a, index+1, cnt)
 
+while True:
+    k, *S = list(map(int, input().split()))
+
+    if k==0:
+        break
+    go(S, 0, 0)
 
 

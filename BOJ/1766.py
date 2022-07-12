@@ -22,4 +22,4 @@ while q:
             heapq.heappush(q, next)
 
 for i in result:
-    print(i, end= " ")
+    print(i, end=" ")

@@ -30,18 +30,18 @@ while q:
         q = next_queue
         next_queue = collections.deque()
 print(dist[N - 1][M - 1])
-# while q:
-#     x, y = q.popleft()
-#     for i in range(4):
-#         nx, ny = x + dx[i], y + dy[i]
-#         if 0 <= nx < N and 0 <= ny < M and dist[nx][ny] == -1:
-#             if maze[nx][ny] == 0:
-#                 q.appendleft((nx, ny))
-#                 dist[nx][ny] = dist[x][y]
-#             else:
-#                 q.append((nx, ny))
-#                 dist[nx][ny] = dist[x][y] + 1
-# print(dist[N - 1][M - 1])
+while q:
+    x, y = q.popleft()
+    for i in range(4):
+        nx, ny = x + dx[i], y + dy[i]
+        if 0 <= nx < N and 0 <= ny < M and dist[nx][ny] == -1:
+            if maze[nx][ny] == 0:
+                q.appendleft((nx, ny))
+                dist[nx][ny] = dist[x][y]
+            else:
+                q.append((nx, ny))
+                dist[nx][ny] = dist[x][y] + 1
+print(dist[N - 1][M - 1])
 
 
 ##11052

@@ -5,6 +5,7 @@ class Edge:
     def __init__(self, to , cost):
         self.to = to
         self.cost = cost
+
 def bfs(start):
     q = collections.deque()
     check[start] = True
@@ -13,10 +14,9 @@ def bfs(start):
         x = q.popleft()
         for y in a[x]:
             if check[y.to] == False:
-                dist[y.to]  = dist[x]+1
+                dist[y.to]  = max(dist[y.to], dist[x]+y.cost)
                 q.append(y.to)
                 check[y.to] = True
-
 limit = 10001
 
 check = [False] * limit
@@ -27,6 +27,7 @@ for i in range(N-1):
     u,v,w = map(int, input().split())
     a[u].append(Edge(v, w))
     a[v].append(Edge(u,w))
+
 bfs(1)
 start = 1
 for i in range(2, N+1):

@@ -56,39 +56,40 @@
 
 from sys import stdin
 
+
+
 def next_permutation(a):
-    i = len(a)-1
-    while i>0 and a[i]<=a[i-1]:
-        i-=1
-    if i<0:
+    i = len(a) - 1
+    if len(a)<2:
         return False
-    j = len(a)-1
-    while a[j]<=a[i-1]:
-        j-=1
-    a[i-1], a[j] = a[j] ,a[i-1]
-    j = len(a)-1
-    while i>j:
-        a[i], a[j] = a[j], a[i]
-        i+=1
-        j-=1
+    while i > 0 and a[i-1]>=a[i]:
+        i -= 1
+    if i <= 0:
+        return False
+    j = len(a) - 1
+    while a[j] <= a[i - 1]:
+        j -= 1
+    a[i - 1], a[j] = a[j], a[i - 1]
+    j = len(a) - 1
+    a[i:]= a[:i-1:-1]
     return True
+
+
 N = int(input())
 S = [list(map(int, stdin.readline().split())) for _ in range(N)]
-b = [0] *N
-for i in range(N//2):
-    b[i] = 1
-b.sort()
+b = [0 if i<N/2 else 1 for i in range(N)]
 
-ans = 3214287655
+
+ans = 2147483647
 while True:
     first = []
     second = []
     for i in range(N):
-        if b[i]==1:
+        if b[i] == 1:
             second.append(i)
         else:
             first.append(i)
-    one=0
+    one = 0
     two = 0
     for i in range(N // 2):
         for j in range(N // 2):
@@ -96,13 +97,38 @@ while True:
                 continue
             one += S[first[i]][first[j]]
             two += S[second[i]][second[j]]
-    diff = abs(one-two)
-    if ans>diff:
-        ans= diff
+    diff = abs(one - two)
+    if ans > diff:
+        ans = diff
     if not next_permutation(b):
         break
 print(ans)
 
-
-
-
+# n = int(input())
+# abil = [list(map(int, input().split())) for _ in range(n)]
+#
+# team = [1 for _ in range(n // 2)] + [2 for _ in range(n // 2)]
+#
+# ans = 3214451293
+#
+#
+# while True:
+#     a = []
+#     b = []
+#     for i in range(n):
+#         if team[i] == 1:
+#             a.append(i)
+#         if team[i] == 2:
+#             b.append(i)
+#     one = 0
+#     two = 0
+#     for i in range(n // 2):
+#         for j in range(n // 2):
+#             one += abil[a[i]][a[j]]
+#             two += abil[b[i]][b[j]]
+#     diff= abs(one - two)
+#     if ans>diff:
+#         ans = diff
+#     if not next_permutation(team):
+#         break
+# print(ans)

@@ -1,6 +1,6 @@
-
-n= int(input())
-a = list(map(int, input().split()))
+#
+# n= int(input())
+# a = list(map(int, input().split()))
 # D = [0] * (n) #D[i]는 i번째에서 끝나는 증가하는 부분수열의 최대합.
 #
 # for i in range(n):
@@ -20,10 +20,16 @@ a = list(map(int, input().split()))
 # print(max(D))
 
 ##
-D = [0] *n
-for i in range(n-1, -1, -1):
-    D[i] = 1
-    for j in range(i+1, n):
-        if a[i]>a[j]:
-            D[i] = max( D[j]+1, D[i])
-print(max(D))
+# D = [0] *n
+# for i in range(n-1, -1, -1):
+#     D[i] = 1
+#     for j in range(i+1, n):
+#         if a[i]>a[j]:
+#             D[i] = max( D[j]+1, D[i])
+# print(max(D))
+import cv2
+img1 = cv2.imread("mKYUgj.jpg")
+print(cv2.__version__)
+cv2.imshow("image1", img1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()

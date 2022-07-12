@@ -1,27 +1,38 @@
 from collections import namedtuple
 
 N= int(input())
-a = [list(map(int, input().split())) for _ in range(N)]
-tree = namedtuple('tree', ['left', 'right'])
-a = [list(*map(tree))]
-def preorder(n):
-    if n== -1:
-        return
-    print(n)
-    preorder(a[n].left)
-    preorder(a[n].right)
+node = namedtuple('node', ['left', 'right'])
 
-def inorder(n):
-    if n==-1:
-        return
-    inorder(a[n].left)
-    print(n)
-    inorder(a[n].right)
+tree = {}
 
-def postorder(n):
-    if n==1:
-        return
-    postorder(a[n].left)
-    postorder(a[n].right)
-    print(n)
+for i in range(N):
+    root,left,right =input().split()
+    tree[root] = node(left,right)
 
+
+def preorder(root):
+    if root== ".":
+        return
+    print(root, end="")
+    preorder(tree[root].left)
+    preorder(tree[root].right)
+
+def inorder(root):
+    if root== ".":
+        return
+    inorder(tree[root].left)
+    print(root,end="")
+    inorder(tree[root].right)
+
+def postorder(root):
+    if root==".":
+        return
+    postorder(tree[root].left)
+    postorder(tree[root].right)
+    print(root,end="")
+
+preorder('A')
+print()
+inorder("A")
+print()
+postorder("A")
