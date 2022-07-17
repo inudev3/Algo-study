@@ -6,7 +6,8 @@ sys.setrecursionlimit(1500 * 1500)
 check = [[False] * 1501 for _ in range(1501)]
 x, y, z = map(int, input().split())
 s = x + y + z
-
+if s%3!=0:
+    exit()
 
 def go(x, y):
     if check[x][y]:
@@ -16,7 +17,7 @@ def go(x, y):
     for i in range(3):
         for j in range(3):
             if a[i] < a[j]:
-                b = [x, y, s - x - y]
+                b = a[:]
                 b[i] += a[i]
                 b[j] -= a[j]
                 go(b[0], b[1])

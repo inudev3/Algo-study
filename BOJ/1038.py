@@ -37,3 +37,30 @@ try:
     print(nums[n])
 except:     # 인덱스가 넘어가는 경우 -1 출력. 마지막 수 9876543210
     print(-1)
+
+n,k = map(int,input().split())
+words = [0]*n
+for i in range(n):
+    s= input()
+    for x in s:##모든 알파벳
+        words[i] |= (1<<ord(x)-ord('a'))
+def count(mask,words):
+    cnt=0
+    for word in words:
+        if (word & (1<<26)-1-mask)==0:
+            cnt+=1
+    return cnt
+def go(index, k, mask, words):##알파벳을 순회
+    if k<0:
+        return 0
+    if index==26:
+        return count(mask,words)
+    ans=0
+    ans =max(ans, go(index+1, k-1, mask|(1<<index), words))
+    if index not in map(lambda x:x-ord('a'),[ord('a'),ord('n'), ord('t'), ord('i'),ord('c')]):##antic은 배우지 않는 선택지가 없음
+        ans = max(ans, go(index+1, k, mask, words))
+    return ans
+
+
+
+

@@ -34,3 +34,25 @@ for i in range(n):
             check_square[square(i,j)][a[i][j]] = True
 
 go(0)
+n = 9
+a = [list(map(int, stdin.readline().split())) for _ in range(n)]
+def go(z):
+    if z==81:
+        return True
+    x=z//n
+    y=z%n
+    if a[x][y]!=0:
+        return go(z+1)
+    else:
+        for i in range(1,10):
+            if not check_col[y][i] and not check_row[x][i] and not check_square[square(x,y)][i]:
+                check_col[y][i] = check_row[x][i] = check_square[square(x, y)][i] = True
+                a[x][y] = i
+                if go(z+1):
+                    return True
+                a[x][y]=0
+                check_col[y][i] = check_row[x][i] = check_square[square(x, y)][i] = False
+        return False
+
+##재귀가 다이나믹으로 변할 수 있는 경우:
+## 어떤 지점에서의 호출 그 이전 지점의 호출으로부터 독립적일 때

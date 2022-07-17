@@ -4,8 +4,19 @@ import sys
 
 sys.setrecursionlimit(1000000000)
 T = int(input())
-
-
+how = ['']*10000
+From = [0]*10000
+def D(num):
+    return ((num*2)%10000, "D")
+def S(num):
+    return (num-1 if num>1  else 9999, "S")
+def L(num):
+    rem = num//1000
+    return ((num%1000)*10+rem, "L")
+def R(num):
+    return ((num%10)*1000+num//10, "R")
+def next(num):
+    q = collections.deque()
 def next(num):
     arr = []
     arr.append(((num * 2) % 10000, "D"))
@@ -29,7 +40,7 @@ for _ in range(T):
     How[a] = ""
     while queue:
         curr = queue.popleft()
-        for num, how in next(curr):
+        for num, how in map(lambda x:[D(x), S(x), L(x), R(x)], curr):
             if Dist[num] == -1:
                 From[num] = curr
                 Dist[num] = Dist[curr] + 1

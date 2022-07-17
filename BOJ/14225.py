@@ -24,4 +24,17 @@ while True:
        print(i)
        break
 
+n= int(input())
+c = [0]*(20*100000+1)
+nums = list(map(int, input().split()))
+for i in range(1<<n):
+    sum=0
+    for j in range(n):
+        if i&(1<<j):
+            sum+=a[j]
+    c[sum]=True
 
+for i in range(1,sum(nums)):
+    if not c[i]:
+        print(i)
+        exit()

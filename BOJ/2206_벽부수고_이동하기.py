@@ -3,29 +3,29 @@
 import collections
 
 n,m = map(int, input().split())
-board =[[0]+list(map(int,list(input()))) for _ in range(n)]
-dist = [[[0]*2 for _ in range(m)] for _ in range(n)]
+board =[list(map(int,list(input()))) for _ in range(n+1)]
+dist = [[[-1]*2 for _ in range(m+1)] for _ in range(n+1)]
 dx =[0,0,-1,1]
 dy=[1,-1,0,0]
 queue=collections.deque()
-queue.append((0,0,0))
-dist[0][0][0] = 1
+queue.append((1,1,0))
+dist[1][1][0] = 0
 while queue:
     x,y,z = queue.popleft()
     for k in range(4):
         nx,ny = x+dx[k], y+dy[k]
         if nx<0 or nx>=n or ny<0 or ny>=m: continue
-        if board[nx][ny]==0 and dist[nx][ny][z]==0:
+        if board[nx][ny]==0 and dist[nx][ny][z]==-1:
             dist[nx][ny][z]= dist[x][y][z]+1
             queue.append((nx,ny,z))
-        if z==0 and board[ny][ny]==1 and dist[nx][ny][z+1]==0:
+        if z==0 and board[ny][ny]==1 and dist[nx][ny][z+1]==-1:
             dist[nx][ny][z+1] = dist[x][y][z] + 1
             queue.append((nx, ny, z+1))
-if dist[n-1][m-1][0]!=0 and dist[n-1][m-1][1]!=0:
-    print(min(dist[n-1][m-1]))
-elif dist[n-1][m-1][0]!=0:
-    print(dist[n-1][m-1][0])
-elif dist[n-1][m-1][1]!=0:
-    print(dist[n-1][m-1][1])
+if dist[n][m][0]!=-1 and dist[n][m][1]!=-1:
+    print(min(dist[n][m]))
+elif dist[n][m][0]!=-1:
+    print(dist[n][m][0])
+elif dist[n][m][1]!=-1:
+    print(dist[n][m][1])
 else:
     print(-1)

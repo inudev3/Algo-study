@@ -8,12 +8,11 @@ import collections
 
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
-
+n,m= map(int, input().split())
 
 def bfs(board):
+    global n, m
     a = [[0 for _ in range(m)] for _ in range(n)]
-    n= len(a)
-    m = len(a[0])
     queue = collections.deque()
     for i in range(n):
         for j in range(m):
@@ -36,7 +35,7 @@ def bfs(board):
             if a[i][j] == 0:
                 cnt += 1
     return cnt
-n, m = map(int, input().split())
+
 
 board = [list(map(int, input().split())) for _ in range(n)]
 
